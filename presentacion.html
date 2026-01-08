@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paradata y Procesos de Respuesta en Cuestionarios Digitales</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+            background: #fafafa;
+            color: #2c3e50;
+            line-height: 1.6;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            padding: 80px 120px;
+            overflow-y: auto;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            font-weight: 300;
+            margin-bottom: 0.3em;
+            color: #1a1a1a;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 2.8em;
+            font-weight: 300;
+            margin-bottom: 0.5em;
+            color: #2c3e50;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            font-weight: 400;
+            margin-bottom: 1em;
+            color: #34495e;
+        }
+
+        .subtitle {
+            font-size: 1.4em;
+            color: #7f8c8d;
+            font-weight: 300;
+            margin-bottom: 2em;
+        }
+
+        .author {
+            font-size: 1.2em;
+            color: #95a5a6;
+            margin-top: 2em;
+        }
+
+        .content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin-bottom: 1.2em;
+            color: #34495e;
+            font-weight: 300;
+        }
+
+        .highlight {
+            color: #2c3e50;
+            font-weight: 400;
+        }
+
+        .bullet-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .bullet-list li {
+            font-size: 1.2em;
+            margin-bottom: 0.8em;
+            padding-left: 1.5em;
+            position: relative;
+            color: #34495e;
+            font-weight: 300;
+        }
+
+        .bullet-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: 400;
+        }
+
+        .graph-container {
+            margin: 2em 0;
+            text-align: center;
+            background: white;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .graph-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .graph-caption {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-top: 1em;
+            font-style: italic;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3em;
+            margin-top: 2em;
+        }
+
+        .section-title {
+            font-size: 1.1em;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #95a5a6;
+            margin-bottom: 1em;
+            font-weight: 500;
+        }
+
+        .slide-number {
+            position: fixed;
+            bottom: 30px;
+            right: 50px;
+            font-size: 0.9em;
+            color: #bdc3c7;
+            font-weight: 300;
+        }
+
+        .navigation-hint {
+            position: fixed;
+            bottom: 30px;
+            left: 50px;
+            font-size: 0.85em;
+            color: #bdc3c7;
+            font-weight: 300;
+        }
+
+        .github-link {
+            display: inline-block;
+            margin-top: 2em;
+            padding: 12px 24px;
+            background: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 1em;
+            transition: background 0.3s;
+        }
+
+        .github-link:hover {
+            background: #34495e;
+        }
+
+        .quote {
+            font-size: 1.1em;
+            font-style: italic;
+            color: #7f8c8d;
+            border-left: 3px solid #3498db;
+            padding-left: 1.5em;
+            margin: 1.5em 0;
+        }
+
+        .method-item {
+            margin-bottom: 1.5em;
+            padding-left: 1em;
+            border-left: 2px solid #ecf0f1;
+        }
+
+        .method-item strong {
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 30px;
+            }
+
+            h1 {
+                font-size: 2.2em;
+            }
+
+            h2 {
+                font-size: 1.8em;
+            }
+
+            p {
+                font-size: 1.1em;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Portada -->
+    <div class="slide active">
+        <div class="content">
+            <h1>Paradata y Procesos de Respuesta<br>en Cuestionarios Digitales</h1>
+            <p class="subtitle">Explorando la información que aportan los tiempos de respuesta por ítem en un estudio piloto sobre actitudes hacia el hidrógeno verde en Magallanes</p>
+            <div class="author">
+                <p>Herman Elgueta Sepúlveda</p>
+                <p>Departamento de Psicología, Universidad de Magallanes</p>
+            </div>
+        </div>
+        <div class="slide-number">1 / 12</div>
+    </div>
+
+    <!-- Slide 2: Contexto -->
+    <div class="slide">
+        <div class="content">
+            <h2>Contexto</h2>
+            <p>Los ítems en cuestionarios de actitudes suelen tratarse como <span class="highlight">unidades equivalentes</span>, asumiendo que las diferencias relevantes se expresan únicamente en las respuestas declaradas.</p>
+            <p class="quote">El proceso mediante el cual los participantes interactúan con los instrumentos de medición suele permanecer invisible para el análisis.</p>
+            <ul class="bullet-list">
+                <li>Desarrollo de plataforma digital propia para levantamiento de datos</li>
+                <li>Registro automático de eventos de interacción con resolución temporal a nivel de ítem</li>
+                <li>Primera exploración sistemática de paradata en este contexto</li>
+                <li>Estudio de carácter <span class="highlight">exploratorio y piloto</span></li>
+            </ul>
+        </div>
+        <div class="slide-number">2 / 12</div>
+        <div class="navigation-hint">← → para navegar</div>
+    </div>
+
+    <!-- Slide 3: Presente Estudio -->
+    <div class="slide">
+        <div class="content">
+            <h2>Presente Estudio</h2>
+            <div class="two-column">
+                <div>
+                    <p class="section-title">Objetivo</p>
+                    <p>Explorar el potencial metodológico del uso de <span class="highlight">paradata</span>, específicamente tiempos de respuesta por ítem, en la medición de actitudes hacia un proyecto de hidrógeno verde.</p>
+                </div>
+                <div>
+                    <p class="section-title">Contexto</p>
+                    <p>Localidad de la región de Magallanes, Chile. Aplicación presencial mediante dispositivos móviles. Muestra pequeña de carácter exploratorio.</p>
+                </div>
+            </div>
+            <p style="margin-top: 2em;">La plataforma presenta ítems de manera secuencial y registra eventos de interacción (tap/click) con resolución temporal a nivel de ítem.</p>
+        </div>
+        <div class="slide-number">3 / 12</div>
+    </div>
+
+    <!-- Slide 4: Métodos -->
+    <div class="slide">
+        <div class="content">
+            <h2>Métodos</h2>
+            <div class="method-item">
+                <p><strong>Muestra:</strong> Pequeña, carácter exploratorio</p>
+            </div>
+            <div class="method-item">
+                <p><strong>Tipos de ítems:</strong></p>
+                <ul class="bullet-list" style="margin-top: 0.5em;">
+                    <li>Ítems <span class="highlight">abiertos</span> (respuestas de texto libre)</li>
+                    <li>Ítems <span class="highlight">dicotómicos</span> (sí/no, opciones binarias)</li>
+                    <li>Ítems <span class="highlight">Likert</span> (escalas de acuerdo)</li>
+                </ul>
+            </div>
+            <div class="method-item">
+                <p><strong>Análisis:</strong> Tiempos de respuesta en milisegundos, medidas de tendencia central, distribución, identificación de outliers, análisis por tipo de ítem y por constructo teórico.</p>
+            </div>
+        </div>
+        <div class="slide-number">4 / 12</div>
+    </div>
+
+    <!-- Slide 5: Resultados - Overall -->
+    <div class="slide">
+        <div class="content">
+            <h2>Resultados</h2>
+            <h3>Tiempo Total de la Encuesta</h3>
+            <div class="graph-container">
+                <img src="grafico_tiempo_total_combinado.png" alt="Distribución del tiempo total">
+                <p class="graph-caption">Distribución del tiempo total de respuesta por participante</p>
+            </div>
+            <p style="margin-top: 1em; font-size: 1.1em;">Heterogeneidad sistemática en los tiempos de respuesta entre participantes, con distribuciones que sugieren diferencias individuales en velocidad de procesamiento y nivel de compromiso.</p>
+        </div>
+        <div class="slide-number">5 / 12</div>
+    </div>
+
+    <!-- Slide 6: Resultados - Dicotómicos -->
+    <div class="slide">
+        <div class="content">
+            <h2>Resultados</h2>
+            <h3>Ítems Dicotómicos</h3>
+            <div class="graph-container">
+                <img src="grafico_todas_dicotomicas.png" alt="Tiempos de respuesta ítems dicotómicos">
+                <p class="graph-caption">Análisis de tiempos de respuesta para ítems dicotómicos</p>
+            </div>
+            <p style="margin-top: 1em; font-size: 1.1em;">Los ítems dicotómicos muestran tiempos consistentemente breves, con menor variabilidad que otros tipos de ítems, como era esperable dado su formato simple.</p>
+        </div>
+        <div class="slide-number">6 / 12</div>
+    </div>
+
+    <!-- Slide 7: Resultados - Abiertos -->
+    <div class="slide">
+        <div class="content">
+            <h2>Resultados</h2>
+            <h3>Ítems Abiertos</h3>
+            <div class="graph-container">
+                <img src="grafico_todas_open.png" alt="Tiempos de respuesta ítems abiertos">
+                <p class="graph-caption">Análisis de tiempos de respuesta para ítems de respuesta abierta</p>
+            </div>
+            <p style="margin-top: 1em; font-size: 1.1em;">Los ítems abiertos presentan tiempos considerablemente más altos y distribuciones más extensas, reflejando la mayor demanda cognitiva y de elaboración requerida.</p>
+        </div>
+        <div class="slide-number">7 / 12</div>
+    </div>
+
+    <!-- Slide 8: Resultados - Likert -->
+    <div class="slide">
+        <div class="content">
+            <h2>Resultados</h2>
+            <h3>Ítems Likert</h3>
+            <div class="graph-container">
+                <img src="grafico_comparativo_likert_sin_outliers_ordenado_mediana.png" alt="Tiempos de respuesta ítems Likert">
+                <p class="graph-caption">Comparación de tiempos de respuesta entre ítems Likert (sin outliers, ordenados por mediana)</p>
+            </div>
+            <p style="margin-top: 1em; font-size: 1.1em;">Heterogeneidad sistemática entre ítems conceptualmente distintos, incluso dentro del mismo instrumento. Algunos ítems presentan tiempos consistentemente breves, mientras otros exhiben medianas considerablemente más altas.</p>
+        </div>
+        <div class="slide-number">8 / 12</div>
+    </div>
+
+    <!-- Slide 9: Resultados - Likert por Constructo -->
+    <div class="slide">
+        <div class="content">
+            <h2>Resultados</h2>
+            <h3>Ítems Likert por Constructo Teórico</h3>
+            <div class="graph-container">
+                <img src="grafico_constructos_likert_sin_outliers.png" alt="Tiempos de respuesta por constructo">
+                <p class="graph-caption">Agrupación de variables Likert por constructo teórico</p>
+            </div>
+            <p style="margin-top: 1em; font-size: 1.1em;">Diferencias en tiempos de respuesta entre constructos sugieren variaciones en complejidad cognitiva, ambigüedad interpretativa o implicación normativa de los contenidos evaluados.</p>
+        </div>
+        <div class="slide-number">9 / 12</div>
+    </div>
+
+    <!-- Slide 10: Resultados - Proporciones -->
+    <div class="slide">
+        <div class="content">
+            <h2>Resultados</h2>
+            <h3>Proporciones del Tiempo Total</h3>
+            <div class="graph-container">
+                <img src="grafico_proporciones_comparativo_likert_sin_outliers_ordenado_mediana.png" alt="Proporciones del tiempo total">
+                <p class="graph-caption">Porcentaje del tiempo total dedicado a cada ítem (control de variabilidad intra-sujeto)</p>
+            </div>
+            <p style="margin-top: 1em; font-size: 1.1em;">Normalización por tiempo total permite controlar diferencias individuales en velocidad de respuesta, revelando patrones relativos de inversión de tiempo por ítem.</p>
+        </div>
+        <div class="slide-number">10 / 12</div>
+    </div>
+
+    <!-- Slide 11: Discusión -->
+    <div class="slide">
+        <div class="content">
+            <h2>Discusión</h2>
+            <ul class="bullet-list">
+                <li><span class="highlight">Estudio exploratorio:</span> Limitado por tamaño muestral, pero ofrece luces metodológicas promisorias</li>
+                <li><span class="highlight">Heterogeneidad sistemática:</span> Los patrones observados sugieren diferencias reales en complejidad cognitiva o implicación normativa, no solo error aleatorio</li>
+                <li><span class="highlight">Desafíos metodológicos:</span> Identificación y manejo de outliers requiere criterios claros y justificados</li>
+                <li><span class="highlight">Potencial diagnóstico:</span> Los tiempos de respuesta pueden identificar ítems problemáticos o que requieren mayor elaboración cognitiva</li>
+                <li><span class="highlight">Control intra-sujeto:</span> El análisis de proporciones permite aislar efectos de ítem de diferencias individuales en velocidad</li>
+            </ul>
+            <p style="margin-top: 1.5em; font-size: 1.1em;">Los tiempos de respuesta ofrecen una dimensión adicional de análisis que permite problematizar la interacción entre participante e instrumento.</p>
+        </div>
+        <div class="slide-number">11 / 12</div>
+    </div>
+
+    <!-- Slide 12: Cierre -->
+    <div class="slide">
+        <div class="content">
+            <h2>Conclusiones</h2>
+            <p>Este piloto propone el uso exploratorio de los tiempos de respuesta como una dimensión adicional de análisis en estudios actitudinales.</p>
+            <p class="quote" style="margin: 2em 0;">Se discuten las implicancias metodológicas de incorporar paradata y se plantean vías para el desarrollo de diseños y análisis más robustos, considerando las oportunidades que ofrecen los avances tecnológicos.</p>
+            <div style="margin-top: 3em;">
+                <a href="https://github.com/tu-usuario/mapa-eh2-rt" class="github-link" target="_blank">
+                    📦 Repositorio GitHub
+                </a>
+                <p style="margin-top: 1em; font-size: 0.9em; color: #95a5a6;">
+                    Incluye: datos, scripts de análisis, y esta presentación
+                </p>
+            </div>
+        </div>
+        <div class="slide-number">12 / 12</div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Navegación con teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                prevSlide();
+            } else if (e.key === 'Home') {
+                showSlide(0);
+            } else if (e.key === 'End') {
+                showSlide(totalSlides - 1);
+            }
+        });
+
+        // Navegación con swipe en móviles
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide();
+            }
+            if (touchEndX > touchStartX + 50) {
+                prevSlide();
+            }
+        }
+
+        // Inicializar
+        showSlide(0);
+    </script>
+</body>
+</html>
