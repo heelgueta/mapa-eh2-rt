@@ -28,18 +28,41 @@
             height: 100vh;
             padding: 80px 120px;
             overflow-y: auto;
-            animation: fadeIn 0.5s ease-in;
         }
 
         .slide.active {
             display: flex;
             flex-direction: column;
             justify-content: center;
+            animation: fadeIn 0.6s ease-in;
         }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content > * {
+            opacity: 0;
+            animation: slideIn 0.8s ease-out forwards;
+        }
+
+        .content > *:nth-child(1) { animation-delay: 0.1s; }
+        .content > *:nth-child(2) { animation-delay: 0.3s; }
+        .content > *:nth-child(3) { animation-delay: 0.5s; }
+        .content > *:nth-child(4) { animation-delay: 0.7s; }
+        .content > *:nth-child(5) { animation-delay: 0.9s; }
+        .content > *:nth-child(6) { animation-delay: 1.1s; }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         h1 {
@@ -134,13 +157,6 @@
             border-radius: 4px;
         }
 
-        .graph-caption {
-            font-size: 0.9em;
-            color: #8b949e;
-            margin-top: 1em;
-            font-style: italic;
-        }
-
         .two-column {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -212,13 +228,6 @@
             font-weight: 500;
         }
 
-        .outlier-note {
-            font-size: 0.95em;
-            color: #f85149;
-            font-style: italic;
-            margin-top: 0.5em;
-        }
-
         @media (max-width: 768px) {
             .slide {
                 padding: 40px 30px;
@@ -254,13 +263,72 @@
                 <p>Departamento de Psicología, Universidad de Magallanes</p>
             </div>
         </div>
-        <div class="slide-number">1 / 13</div>
+        <div class="slide-number">1 / 20</div>
     </div>
 
-    <!-- Slide 2: Contexto -->
+    <!-- Slide 2: Marco Teórico 1 - Paradata -->
     <div class="slide">
         <div class="content">
-            <h2>Contexto</h2>
+            <h2>Paradata en Investigación de Encuestas</h2>
+            <p>Los <span class="highlight">paradata</span> son datos auxiliares sobre el proceso de administración de encuestas, no sobre el contenido mismo.</p>
+            <ul class="bullet-list">
+                <li>Métricas automáticas: timestamps, clicks, keystrokes, trazas conductuales</li>
+                <li>Los <span class="highlight">tiempos de respuesta</span> emergen como una de las formas más prevalentes y útiles de paradata</li>
+                <li>Pueden capturarse a múltiples niveles: cuestionario completo, secciones, o ítems individuales</li>
+                <li>Análisis de timing se ha convertido en un enfoque <span class="highlight">state-of-the-art</span> para evaluar instrumentos y entender comportamiento</li>
+            </ul>
+        </div>
+        <div class="slide-number">2 / 20</div>
+        <div class="navigation-hint">← → para navegar</div>
+    </div>
+
+    <!-- Slide 3: Marco Teórico 2 - Niveles de Análisis -->
+    <div class="slide">
+        <div class="content">
+            <h2>Niveles de Análisis</h2>
+            <div class="two-column">
+                <div>
+                    <p class="section-title">Nivel Cuestionario</p>
+                    <ul class="bullet-list">
+                        <li>Tiempo total de completación</li>
+                        <li>Indicador de carga del respondente</li>
+                        <li>Detección de <span class="highlight">speeders</span> (respondentes sospechosamente rápidos)</li>
+                        <li>Monitoreo de abandono (breakoffs)</li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="section-title">Nivel Ítem</p>
+                    <ul class="bullet-list">
+                        <li>Tiempos de respuesta por pregunta</li>
+                        <li>Ventana al proceso cognitivo</li>
+                        <li>Reflejan dificultad y ambigüedad</li>
+                        <li>Diagnóstico de problemas de diseño</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">3 / 20</div>
+    </div>
+
+    <!-- Slide 4: Marco Teórico 3 - Insights -->
+    <div class="slide">
+        <div class="content">
+            <h2>Insights de los Tiempos de Respuesta</h2>
+            <ul class="bullet-list">
+                <li><span class="highlight">Operaciones de encuesta:</span> quién acelera, qué secciones se alargan</li>
+                <li><span class="highlight">Diagnóstico de preguntas:</span> qué ítems son demasiado difíciles o mal diseñados</li>
+                <li><span class="highlight">Comportamiento y psicología:</span> quién está comprometido o desenganchado, qué procesos cognitivos están en juego</li>
+                <li><span class="highlight">Calidad de datos:</span> tiempos extremadamente cortos correlacionan con satisficing y menor calidad</li>
+                <li><span class="highlight">Ajustes estadísticos:</span> modelos multinivel para controlar velocidad individual vs. dificultad del ítem</li>
+            </ul>
+        </div>
+        <div class="slide-number">4 / 20</div>
+    </div>
+
+    <!-- Slide 5: Entonces... -->
+    <div class="slide">
+        <div class="content">
+            <h2>Entonces...</h2>
             <p>Los ítems en cuestionarios de actitudes suelen tratarse como <span class="highlight">unidades equivalentes</span>, asumiendo que las diferencias relevantes se expresan únicamente en las respuestas declaradas.</p>
             <p class="quote">El proceso mediante el cual los participantes interactúan con los instrumentos de medición suele permanecer invisible para el análisis.</p>
             <ul class="bullet-list">
@@ -270,11 +338,10 @@
                 <li>Estudio de carácter <span class="highlight">exploratorio y piloto</span></li>
             </ul>
         </div>
-        <div class="slide-number">2 / 13</div>
-        <div class="navigation-hint">← → para navegar</div>
+        <div class="slide-number">5 / 20</div>
     </div>
 
-    <!-- Slide 3: Presente Estudio -->
+    <!-- Slide 6: Presente Estudio -->
     <div class="slide">
         <div class="content">
             <h2>Presente Estudio</h2>
@@ -290,10 +357,10 @@
             </div>
             <p style="margin-top: 2em;">La plataforma presenta ítems de manera secuencial y registra eventos de interacción (tap/click) con resolución temporal a nivel de ítem.</p>
         </div>
-        <div class="slide-number">3 / 13</div>
+        <div class="slide-number">6 / 20</div>
     </div>
 
-    <!-- Slide 4: Métodos -->
+    <!-- Slide 7: Métodos -->
     <div class="slide">
         <div class="content">
             <h2>Métodos</h2>
@@ -312,109 +379,131 @@
                 <p><strong>Análisis:</strong> Tiempos de respuesta en milisegundos, medidas de tendencia central, distribución, identificación de outliers, análisis por tipo de ítem y por constructo teórico.</p>
             </div>
         </div>
-        <div class="slide-number">4 / 13</div>
+        <div class="slide-number">7 / 20</div>
     </div>
 
-    <!-- Slide 5: Resultados - Overall -->
+    <!-- Slide 8: Resultados - Tiempo Total Histograma -->
     <div class="slide">
         <div class="content">
             <h2>Resultados</h2>
-            <h3>Tiempo Total de la Encuesta</h3>
             <div class="graph-container">
-                <img src="grafico_tiempo_total_combinado.png" alt="Distribución del tiempo total">
-                <p class="graph-caption">Distribución del tiempo total de respuesta por participante</p>
+                <img src="histograma_tiempo_total_minutos.png" alt="Distribución del tiempo total">
             </div>
-            <p style="margin-top: 1em; font-size: 1.1em;">Heterogeneidad sistemática en los tiempos de respuesta entre participantes, con distribuciones que sugieren diferencias individuales en velocidad de procesamiento y nivel de compromiso.</p>
         </div>
-        <div class="slide-number">5 / 13</div>
+        <div class="slide-number">8 / 20</div>
     </div>
 
-    <!-- Slide 6: Resultados - Dicotómicos -->
+    <!-- Slide 9: Resultados - Tiempo Total Barras -->
     <div class="slide">
         <div class="content">
             <h2>Resultados</h2>
-            <h3>Ítems Dicotómicos</h3>
+            <div class="graph-container">
+                <img src="barras_tiempo_total_personas.png" alt="Tiempo total por persona">
+            </div>
+        </div>
+        <div class="slide-number">9 / 20</div>
+    </div>
+
+    <!-- Slide 10: Resultados - Dicotómicos Todas -->
+    <div class="slide">
+        <div class="content">
+            <h2>Resultados</h2>
             <div class="graph-container">
                 <img src="grafico_todas_dicotomicas.png" alt="Tiempos de respuesta ítems dicotómicos">
-                <p class="graph-caption">Análisis de tiempos de respuesta para ítems dicotómicos</p>
             </div>
-            <p style="margin-top: 1em; font-size: 1.1em;">Los ítems dicotómicos muestran tiempos consistentemente breves, con menor variabilidad que otros tipos de ítems, como era esperable dado su formato simple.</p>
         </div>
-        <div class="slide-number">6 / 13</div>
+        <div class="slide-number">10 / 20</div>
     </div>
 
-    <!-- Slide 7: Resultados - Abiertos -->
+    <!-- Slide 11: Resultados - Dicotómicos Comparativo -->
     <div class="slide">
         <div class="content">
             <h2>Resultados</h2>
-            <h3>Ítems Abiertos</h3>
             <div class="graph-container">
-                <img src="grafico_todas_open_sin_outliers.png" alt="Tiempos de respuesta ítems abiertos">
-                <p class="graph-caption">Análisis de tiempos de respuesta para ítems de respuesta abierta (sin outliers)</p>
+                <img src="grafico_comparativo_dicotomicas.png" alt="Comparación ítems dicotómicos">
             </div>
-            <p style="margin-top: 1em; font-size: 1.1em;">Los ítems abiertos presentan tiempos considerablemente más altos y distribuciones más extensas, reflejando la mayor demanda cognitiva y de elaboración requerida.</p>
         </div>
-        <div class="slide-number">7 / 13</div>
+        <div class="slide-number">11 / 20</div>
     </div>
 
-    <!-- Slide 8: Resultados - Likert CON OUTLIERS (para mostrar el problema) -->
+    <!-- Slide 12: Resultados - Abiertos -->
     <div class="slide">
         <div class="content">
             <h2>Resultados</h2>
-            <h3>Ítems Likert</h3>
             <div class="graph-container">
-                <img src="grafico_comparativo_likert.png" alt="Tiempos de respuesta ítems Likert con outliers">
-                <p class="graph-caption">Comparación de tiempos de respuesta entre ítems Likert (incluyendo outliers)</p>
-                <p class="outlier-note">Nota: La presencia de outliers extremos dificulta la visualización de patrones subyacentes</p>
+                <img src="grafico_todas_open.png" alt="Tiempos de respuesta ítems abiertos">
             </div>
-            <p style="margin-top: 1em; font-size: 1.1em;">Heterogeneidad sistemática entre ítems conceptualmente distintos. La presencia de <span class="highlight">outliers extremos</span> ilustra uno de los desafíos metodológicos principales en el análisis de paradata.</p>
         </div>
-        <div class="slide-number">8 / 13</div>
+        <div class="slide-number">12 / 20</div>
     </div>
 
-    <!-- Slide 9: Resultados - Likert SIN OUTLIERS -->
+    <!-- Slide 13: Resultados - Abiertos Sin Outliers -->
     <div class="slide">
         <div class="content">
             <h2>Resultados</h2>
-            <h3>Ítems Likert (sin outliers)</h3>
             <div class="graph-container">
-                <img src="grafico_comparativo_likert_sin_outliers_ordenado_mediana.png" alt="Tiempos de respuesta ítems Likert sin outliers">
-                <p class="graph-caption">Comparación de tiempos de respuesta entre ítems Likert (sin outliers, ordenados por mediana)</p>
+                <img src="grafico_todas_open_sin_outliers.png" alt="Tiempos de respuesta ítems abiertos sin outliers">
             </div>
-            <p style="margin-top: 1em; font-size: 1.1em;">Al excluir outliers, emergen patrones más claros: algunos ítems presentan tiempos consistentemente breves, mientras otros exhiben medianas considerablemente más altas.</p>
         </div>
-        <div class="slide-number">9 / 13</div>
+        <div class="slide-number">13 / 20</div>
     </div>
 
-    <!-- Slide 10: Resultados - Likert por Constructo -->
+    <!-- Slide 14: Resultados - Likert Todas -->
     <div class="slide">
         <div class="content">
             <h2>Resultados</h2>
-            <h3>Ítems Likert por Constructo Teórico</h3>
             <div class="graph-container">
-                <img src="grafico_constructos_likert_sin_outliers.png" alt="Tiempos de respuesta por constructo">
-                <p class="graph-caption">Agrupación de variables Likert por constructo teórico (sin outliers)</p>
+                <img src="grafico_todas_likert.png" alt="Tiempos de respuesta ítems Likert">
             </div>
-            <p style="margin-top: 1em; font-size: 1.1em;">Diferencias en tiempos de respuesta entre constructos sugieren variaciones en complejidad cognitiva, ambigüedad interpretativa o implicación normativa de los contenidos evaluados.</p>
         </div>
-        <div class="slide-number">10 / 13</div>
+        <div class="slide-number">14 / 20</div>
     </div>
 
-    <!-- Slide 11: Resultados - Proporciones -->
+    <!-- Slide 15: Resultados - Likert Sin Outliers -->
     <div class="slide">
         <div class="content">
             <h2>Resultados</h2>
-            <h3>Proporciones del Tiempo Total</h3>
             <div class="graph-container">
-                <img src="grafico_proporciones_comparativo_likert_sin_outliers_ordenado_mediana.png" alt="Proporciones del tiempo total">
-                <p class="graph-caption">Porcentaje del tiempo total dedicado a cada ítem (control de variabilidad intra-sujeto, sin outliers)</p>
+                <img src="grafico_todas_likert_sin_outliers.png" alt="Tiempos de respuesta ítems Likert sin outliers">
             </div>
-            <p style="margin-top: 1em; font-size: 1.1em;">Normalización por tiempo total permite controlar diferencias individuales en velocidad de respuesta, revelando patrones relativos de inversión de tiempo por ítem.</p>
         </div>
-        <div class="slide-number">11 / 13</div>
+        <div class="slide-number">15 / 20</div>
     </div>
 
-    <!-- Slide 12: Discusión -->
+    <!-- Slide 16: Resultados - Likert Comparativo Sin Outliers -->
+    <div class="slide">
+        <div class="content">
+            <h2>Resultados</h2>
+            <div class="graph-container">
+                <img src="grafico_comparativo_likert_sin_outliers.png" alt="Comparación ítems Likert sin outliers">
+            </div>
+        </div>
+        <div class="slide-number">16 / 20</div>
+    </div>
+
+    <!-- Slide 17: Resultados - Proporciones Comparativo -->
+    <div class="slide">
+        <div class="content">
+            <h2>Resultados</h2>
+            <div class="graph-container">
+                <img src="grafico_proporciones_comparativo_likert_sin_outliers.png" alt="Proporciones del tiempo total">
+            </div>
+        </div>
+        <div class="slide-number">17 / 20</div>
+    </div>
+
+    <!-- Slide 18: Resultados - Proporciones Constructos -->
+    <div class="slide">
+        <div class="content">
+            <h2>Resultados</h2>
+            <div class="graph-container">
+                <img src="grafico_proporciones_constructos_likert_sin_outliers.png" alt="Proporciones por constructo">
+            </div>
+        </div>
+        <div class="slide-number">18 / 20</div>
+    </div>
+
+    <!-- Slide 19: Discusión -->
     <div class="slide">
         <div class="content">
             <h2>Discusión</h2>
@@ -427,10 +516,10 @@
             </ul>
             <p style="margin-top: 1.5em; font-size: 1.1em;">Los tiempos de respuesta ofrecen una dimensión adicional de análisis que permite problematizar la interacción entre participante e instrumento.</p>
         </div>
-        <div class="slide-number">12 / 13</div>
+        <div class="slide-number">19 / 20</div>
     </div>
 
-    <!-- Slide 13: Cierre -->
+    <!-- Slide 20: Cierre -->
     <div class="slide">
         <div class="content">
             <h2>Conclusiones</h2>
@@ -445,7 +534,7 @@
                 </p>
             </div>
         </div>
-        <div class="slide-number">13 / 13</div>
+        <div class="slide-number">20 / 20</div>
     </div>
 
     <script>
@@ -457,6 +546,18 @@
             slides[currentSlide].classList.remove('active');
             currentSlide = (n + totalSlides) % totalSlides;
             slides[currentSlide].classList.add('active');
+            
+            // Reiniciar animaciones al cambiar de slide
+            const content = slides[currentSlide].querySelector('.content');
+            if (content) {
+                const children = content.children;
+                for (let i = 0; i < children.length; i++) {
+                    children[i].style.animation = 'none';
+                    setTimeout(() => {
+                        children[i].style.animation = '';
+                    }, 10);
+                }
+            }
         }
 
         function nextSlide() {
