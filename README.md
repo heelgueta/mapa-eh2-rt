@@ -14,13 +14,15 @@ Este repositorio contiene:
   - `analisis_tiempo_total.R` - Análisis del tiempo total de la encuesta
   - `analisis_por_persona_dicotomicos.R` - Análisis individual por persona
   - `analisis_proporciones_likert.R` - Análisis de proporciones del tiempo total (control intra-sujeto)
-- **Presentación**: `presentacion.html` - Presentación académica interactiva
+- **Presentación**: `index.html` - Presentación académica interactiva
 
 ## 🚀 Uso
 
 ### Ver la presentación
 
-Abre `presentacion.html` en tu navegador. La presentación es interactiva:
+La presentación está disponible en: **https://heelgueta.github.io/mapa-eh2-rt/**
+
+También puedes abrir `index.html` localmente en tu navegador. La presentación es interactiva:
 
 - **Flechas** ← → o **Espacio** para avanzar/retroceder
 - **Home/End** para ir al inicio/final
@@ -83,4 +85,4 @@ Universidad de Magallanes
 
 ---
 
-*Para más detalles, ver la presentación en `presentacion.html`*
+*Para más detalles, ver la presentación en línea en [https://heelgueta.github.io/mapa-eh2-rt/](https://heelgueta.github.io/mapa-eh2-rt/) o abrir `index.html` localmente*
